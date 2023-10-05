@@ -13,6 +13,7 @@ def user_login(request):
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
         if user is not None:
+            
             if user.is_active:
                 login(request, user)
                 return HttpResponse('Вы залогинены')
