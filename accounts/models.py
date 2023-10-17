@@ -8,5 +8,5 @@ class Profile(models.Model):
     data = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return f'{self.user}'
 

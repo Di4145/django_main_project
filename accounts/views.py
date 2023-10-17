@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from accounts.forms import UserRegistrationForm
+from accounts.forms import UserRegistrationForm, ProfileForm, UserEditForm
 from accounts.models import Profile
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -36,9 +36,19 @@ def dashboard(request):
 @login_required
 def edit(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        profile_form = Profile
-        if user_form.is_valid():
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        profile_form = ProfileForm(instance=request.user.profile, data=request.POST, files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Update successfull')
+        else:
+            messages.error(request, 'Error Update')
+
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'account/edit.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
 
@@ -56,3 +66,5 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {"user_form": user_form})
 
+def main(request):
+    return render(request, 'index.html')
