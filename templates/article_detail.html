@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    {{ article.title }}<br>
+    {{ article.author }}<br>
+    {{ article.text }}<br>
+    {{ article.created_at }}<br>
+    {{ article.update }}<br>
+    Кол-во лайков: {{ like_count }}<br>
+    <br>
+    {{ article.id  }}
+    {{ request.user.id }}
+    <form action="like_set" method="post">
+    {% csrf_token %}
+    <input name="user_id" value=" {{ request.user.id }}">
+    <input name="article_id" value="{{ article.id  }}">
+    <button type='submit'> Like</button>
+
+
+
+    </form>
+{% endblock %}

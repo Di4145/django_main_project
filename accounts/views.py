@@ -66,5 +66,3 @@ def register(request):
     return render(request, 'account/register.html', {"user_form": user_form})
 
 
-def main(request):
-    return render(request, 'index.html')
