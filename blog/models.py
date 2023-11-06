@@ -11,15 +11,11 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     update = models.DateTimeField(auto_now_add=True, null=True)
 
-
     def __str__(self):
         return self.title
 
-
     def get_absolute_url(self):
         return reverse('article_detail', args=[self.id])
-
-
 
 
 class Like(models.Model):
