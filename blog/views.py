@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
+from django.http import JsonResponse
 from blog.models import Article, Like
 
 
@@ -23,14 +23,20 @@ def detail(request, article_id):
 
 
 def like(request):
+
     if request.method == 'POST':
         user_id = request.POST['user_id']
         article_id = request.POST['article_id']
+        article = Article.objects.get(id=article_id)
         if Like.objects.filter(user_id_id=user_id, article_id=article_id).exists():
             new_like = Like.objects.filter(user_id_id=user_id, article_id=article_id)
             new_like.delete()
+            button_label = 'Like'
 
         else:
             new_like = Like(user_id_id=user_id, article_id=article_id)
             new_like.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            button_label = 'UnLike'
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    like_count = article.like_set.count()
+    return JsonResponse({'like_count': like_count, 'button_label': button_label})

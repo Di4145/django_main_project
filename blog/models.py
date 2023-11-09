@@ -21,3 +21,6 @@ class Article(models.Model):
 class Like(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Favorites(models.Model)
