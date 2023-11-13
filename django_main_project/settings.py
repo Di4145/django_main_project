@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'django_extensions',
     'shop',
+    'django_summernote',
 
 ]
 

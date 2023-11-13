@@ -10,6 +10,9 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     path('blog/', include('blog.urls')),
     # path('shop/', include('shop.urls')),
+    path('summernote/', include('django_summernote.urls')),
+
+
 
 ]
 
