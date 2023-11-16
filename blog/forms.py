@@ -10,7 +10,7 @@ class EditArticleForm(forms.ModelForm):
         model = Article
         fields = ['text_1']
         widgets = {
-            'text': SummernoteWidget(),
+            'text_1': SummernoteWidget(),
         }
 
 

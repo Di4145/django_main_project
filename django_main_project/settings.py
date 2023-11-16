@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'shop',
     'django_summernote',
+    'rest_framework',
 
 ]
 
@@ -142,3 +143,38 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# SUMMERNOTE_THEME = 'bs5'
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+            # As an example, using Summernote Air-mode
+            'airMode': False,
+
+            # Change editor size
+            'width': '100%',
+            # 'height': '480',
+
+            # Use proper language setting automatically (default)
+            'lang': None,
+
+
+           'codemirror': {
+                'enabled': True,
+                'mode': 'htmlmixed',
+                'lineNumbers': True,
+                'theme': 'monokai',
+            },
+
+            # Toolbar customization
+            # https://summernote.org/deep-dive/#custom-toolbar-popover
+            'toolbar': [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture', 'video']],
+            ],}
+
+
+}
