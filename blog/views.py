@@ -63,5 +63,8 @@ def favorites(request):
 
 
 def article_edit(request, id):
-    form = EditArticleForm(instance=Article.objects.get(id=id))
-    return render(request, 'article_edit.html', {'form': form})
+    if Article.objects.get(id=id).author == request.user:
+        form = EditArticleForm(instance=Article.objects.get(id=id))
+        return render(request, 'article_edit.html', {'form': form})
+    else:
+        return HttpResponse("Редактирование не возможно")

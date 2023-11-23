@@ -11,6 +11,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     update = models.DateTimeField(auto_now_add=True, null=True)
     text_1 = models.TextField()
+    photo = models.ImageField(upload_to='article_image', null=True, blank=True)
 
     def __str__(self):
         return self.title

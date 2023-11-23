@@ -1,14 +1,21 @@
 from django.db import models
 
+
 # Create your models here.
 
 
 class Type(models.Model):
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
+
 
 class Maker(models.Model):
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -21,8 +28,7 @@ class Product(models.Model):
     cover = models.ImageField(upload_to='product_cover', blank=True)
     on_site = models.BooleanField(default=False)
     sale = models.FloatField()
+    cost = models.IntegerField(null=True, blank=True)
 
-
-
-
-
+    def __str__(self):
+        return self.name

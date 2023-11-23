@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*ajyifzh&!t5x620*o^vplz^fr1(fpe_7#r1lh@=qqe%1=8tw=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'shop',
     'django_summernote',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
+
 
 ]
 
@@ -177,4 +180,10 @@ SUMMERNOTE_CONFIG = {
             ],}
 
 
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
